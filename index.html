@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Camila Tan & Samuel Vilchez - Reception</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fcf8ff;
+      --bg2: #f7f0fb;
+      --card: rgba(255,255,255,0.72);
+      --stroke: rgba(168, 137, 196, 0.22);
+      --text: #4e3f5f;
+      --muted: #7d6d8f;
+      --muted2: #9a8cab;
+      --accent: #caa8e9;
+      --accent-2: #e8d7f5;
+      --accent-3: #ffffff;
+      --gold: #d9b86c;
+      --shadow: 0 18px 45px rgba(160, 132, 185, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(227, 204, 244, 0.55), transparent 60%),
+        radial-gradient(800px 500px at 85% 15%, rgba(248, 234, 251, 0.9), transparent 58%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    .floral-blur{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floral-blur::before,
+    .floral-blur::after{
+      content:"";
+      position:absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      filter: blur(30px);
+      opacity: 0.35;
+    }
+
+    .floral-blur::before{
+      top: -80px;
+      left: -90px;
+      background: radial-gradient(circle, #ead7f6 0%, #f7eefc 58%, transparent 75%);
+    }
+
+    .floral-blur::after{
+      right: -90px;
+      bottom: -90px;
+      background: radial-gradient(circle, #f4dff8 0%, #fff7fb 58%, transparent 75%);
+    }
+
+    .wrap{
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 30px 16px 70px;
+    }
+
+    header.hero{
+      position: relative;
+      text-align: center;
+      padding: 54px 22px 38px;
+      border: 1px solid rgba(202, 168, 233, 0.24);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.58)),
+        radial-gradient(circle at top, rgba(232, 215, 245, 0.5), transparent 55%);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .eyebrow{
+      margin: 0 0 8px 0;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      color: var(--muted2);
+      font-weight: 600;
+    }
+
+    .title{
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      line-height: 1.05;
+      font-weight: 700;
+      color: #5b446f;
+    }
+
+    .amp{
+      color: var(--gold);
+      padding: 0 0.15em;
+    }
+
+    .subtitle{
+      margin: 16px auto 0;
+      max-width: 760px;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    .hero-divider{
+      width: 120px;
+      height: 2px;
+      margin: 22px auto 18px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      border-radius: 999px;
+    }
+
+    .hero-note{
+      margin: 0;
+      color: var(--muted2);
+      font-size: 0.95rem;
+    }
+
+    .grid{
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 860px){
+      .grid{
+        grid-template-columns: 1fr 1fr;
+      }
+      .span-2{
+        grid-column: 1 / -1;
+      }
+    }
+
+    .card{
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 24px;
+      padding: 22px 20px 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(202,168,233,0.35), rgba(255,255,255,0.4), rgba(217,184,108,0.18));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .section-title{
+      margin: 0 0 4px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      color: #5f4975;
+    }
+
+    .section-note{
+      margin: 0 0 16px 0;
+      color: var(--muted2);
+      font-size: 0.95rem;
+    }
+
+    .drink{
+      padding: 14px 0;
+      border-bottom: 1px dashed rgba(168, 137, 196, 0.22);
+    }
+
+    .drink:last-child{
+      border-bottom: none;
+      padding-bottom: 4px;
+    }
+
+    .drink-name{
+      margin: 0 0 7px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.45rem;
+      color: #59436d;
+      font-weight: 700;
+    }
+
+    .tag{
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(202, 168, 233, 0.16);
+      border: 1px solid rgba(202, 168, 233, 0.22);
+      color: #7c6296;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    li{ margin: 4px 0; }
+
+    .note{
+      margin: 8px 0 0;
+      font-size: 0.95rem;
+      color: var(--muted2);
+    }
+
+    .signature{
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted2);
+      font-size: 0.95rem;
+    }
+
+    .signature strong{
+      color: #6d557f;
+      font-weight: 600;
+    }
+
+    footer{
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted2);
+      font-size: 0.86rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floral-blur" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="hero">
+      <p class="eyebrow">Wedding Reception Menu</p>
+      <h1 class="title">Camila Tan <span class="amp">&amp;</span> Samuel Vilchez</h1>
+      <div class="hero-divider"></div>
+      <p class="subtitle">
+        A small curated cocktail menu for a joyful evening of celebration, love, and great company.
+      </p>
+      <p class="hero-note">All measurements are listed for one drink.</p>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2 class="section-title">For the Toast</h2>
+        <p class="section-note">Simple, elegant, celebratory</p>
+
+        <div class="drink">
+          <div class="tag">Sparkling</div>
+          <h3 class="drink-name">Toast</h3>
+          <ul>
+            <li>4 oz Champagne or sparkling wine</li>
+            <li>Serve chilled in a flute or coupe</li>
+          </ul>
+          <p class="note">A classic first pour to celebrate the couple.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Bright & Refreshing</h2>
+        <p class="section-note">Crisp citrus with a lively finish</p>
+
+        <div class="drink">
+          <div class="tag">Highball</div>
+          <h3 class="drink-name">Paloma</h3>
+          <ul>
+            <li>2 oz Tequila blanco or mezcal</li>
+            <li>1/2 oz Lime juice</li>
+            <li>4 oz Grapefruit soda</li>
+            <li>Add directly in glass over ice and stir gently for 5–10 seconds</li>
+          </ul>
+          <p class="note">Fresh, bright, and easy to enjoy throughout the reception.</p>
+        </div>
+      </section>
+
+      <section class="card span-2">
+        <h2 class="section-title">Signature Cocktail</h2>
+        <p class="section-note">Soft texture, smoky depth, wedding-ready presentation</p>
+
+        <div class="drink">
+          <div class="tag">Clarified</div>
+          <h3 class="drink-name">Clarified Milk Cocktail — Mezcal</h3>
+          <ul>
+            <li>1.5 oz Mezcal</li>
+            <li>3/4 oz Lemon juice</li>
+            <li>1/2 oz Simple syrup</li>
+            <li>1/2 oz Orange liqueur</li>
+            <li>1 oz milk for clarification process</li>
+            <li>Serve cold over a large cube or neat after clarification</li>
+          </ul>
+          <p class="note">
+            Smooth, refined, and elegant with a subtle smoky finish. Replace these proportions with your original clarified mezcal recipe if you had a specific version before.
+          </p>
+        </div>
+      </section>
+
+      <section class="card span-2">
+        <h2 class="section-title">Easy Favorite</h2>
+        <p class="section-note">Relaxed, familiar, and approachable</p>
+
+        <div class="drink">
+          <div class="tag">Classic Mixed Drink</div>
+          <h3 class="drink-name">Rum &amp; Coke</h3>
+          <ul>
+            <li>2 oz Rum</li>
+            <li>4 oz Coke</li>
+            <li>Lime wedge optional</li>
+            <li>Add directly in glass over ice and stir gently for 5–10 seconds</li>
+          </ul>
+          <p class="note">A comfortable crowd-pleaser for guests who want something simple and familiar.</p>
+        </div>
+      </section>
+    </main>
+
+    <p class="signature">
+      With love, <strong>Camila &amp; Samuel</strong>
+    </p>
+
+    <footer>
+      Reception menu • Crafted for a beautiful celebration
+    </footer>
+  </div>
+</body>
+</html>
