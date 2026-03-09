@@ -11,305 +11,439 @@
 
   <style>
     :root{
-      --bg: #fcf8ff;
-      --bg2: #f7f0fb;
-      --card: rgba(255,255,255,0.72);
-      --stroke: rgba(168, 137, 196, 0.22);
-      --text: #4e3f5f;
-      --muted: #7d6d8f;
-      --muted2: #9a8cab;
-      --accent: #caa8e9;
-      --accent-2: #e8d7f5;
-      --accent-3: #ffffff;
-      --gold: #d9b86c;
-      --shadow: 0 18px 45px rgba(160, 132, 185, 0.16);
+      --bg:#fdfaff;
+      --bg2:#f8f1fc;
+      --card:rgba(255,255,255,0.78);
+      --stroke:rgba(178, 150, 210, 0.22);
+      --text:#4f4260;
+      --muted:#786a89;
+      --muted2:#9d90ae;
+      --lilac:#d9c1f2;
+      --lilac2:#ecdff8;
+      --rose:#f7e9f5;
+      --gold:#d8b56f;
+      --shadow:0 18px 45px rgba(162, 136, 191, 0.15);
     }
 
-    * { box-sizing: border-box; }
-
-    html, body { min-height: 100%; }
+    *{ box-sizing:border-box; }
+    html, body{ min-height:100%; }
 
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      line-height: 1.6;
+      color:var(--text);
+      line-height:1.6;
       background:
-        radial-gradient(900px 500px at 15% 10%, rgba(227, 204, 244, 0.55), transparent 60%),
-        radial-gradient(800px 500px at 85% 15%, rgba(248, 234, 251, 0.9), transparent 58%),
+        radial-gradient(900px 520px at 15% 10%, rgba(236,223,248,0.9), transparent 60%),
+        radial-gradient(800px 520px at 85% 15%, rgba(247,233,245,0.85), transparent 58%),
         linear-gradient(180deg, var(--bg), var(--bg2));
-      overflow-x: hidden;
-    }
-
-    .floral-blur{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .floral-blur::before,
-    .floral-blur::after{
-      content:"";
-      position:absolute;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      filter: blur(30px);
-      opacity: 0.35;
-    }
-
-    .floral-blur::before{
-      top: -80px;
-      left: -90px;
-      background: radial-gradient(circle, #ead7f6 0%, #f7eefc 58%, transparent 75%);
-    }
-
-    .floral-blur::after{
-      right: -90px;
-      bottom: -90px;
-      background: radial-gradient(circle, #f4dff8 0%, #fff7fb 58%, transparent 75%);
+      overflow-x:hidden;
     }
 
     .wrap{
-      position: relative;
-      z-index: 1;
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 30px 16px 70px;
+      position:relative;
+      max-width:1080px;
+      margin:0 auto;
+      padding:28px 16px 72px;
     }
 
+    /* Decorative floral corners */
+    .corner{
+      position:fixed;
+      width:220px;
+      height:220px;
+      pointer-events:none;
+      z-index:0;
+      opacity:0.9;
+    }
+
+    .corner svg{
+      width:100%;
+      height:100%;
+      display:block;
+      filter: drop-shadow(0 8px 18px rgba(174,145,205,0.12));
+    }
+
+    .corner-tl{ top:0; left:0; }
+    .corner-tr{ top:0; right:0; transform:scaleX(-1); }
+    .corner-bl{ bottom:0; left:0; transform:scaleY(-1); }
+    .corner-br{ bottom:0; right:0; transform:scale(-1); }
+
     header.hero{
-      position: relative;
-      text-align: center;
-      padding: 54px 22px 38px;
-      border: 1px solid rgba(202, 168, 233, 0.24);
-      border-radius: 28px;
+      position:relative;
+      z-index:1;
+      text-align:center;
+      padding:56px 22px 38px;
+      border:1px solid var(--stroke);
+      border-radius:30px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.58)),
-        radial-gradient(circle at top, rgba(232, 215, 245, 0.5), transparent 55%);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(8px);
+        linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.60)),
+        radial-gradient(circle at top, rgba(217,193,242,0.35), transparent 55%);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.5), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,0.35), transparent 26%);
+      pointer-events:none;
     }
 
     .eyebrow{
-      margin: 0 0 8px 0;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-size: 0.76rem;
-      color: var(--muted2);
-      font-weight: 600;
+      margin:0 0 10px;
+      font-size:0.78rem;
+      text-transform:uppercase;
+      letter-spacing:0.18em;
+      color:var(--muted2);
+      font-weight:600;
+      position:relative;
+      z-index:1;
+    }
+
+    .monogram{
+      width:92px;
+      height:92px;
+      margin:0 auto 18px;
+      border-radius:999px;
+      border:1px solid rgba(216,181,111,0.35);
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(236,223,248,0.9));
+      box-shadow:
+        inset 0 0 0 6px rgba(255,255,255,0.45),
+        0 10px 28px rgba(173,145,204,0.16);
+      position:relative;
+      z-index:1;
+    }
+
+    .monogram span{
+      font-family:"Cormorant Garamond", serif;
+      font-size:2.3rem;
+      font-weight:700;
+      color:#6a557f;
+      letter-spacing:0.04em;
     }
 
     .title{
-      margin: 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.4rem, 7vw, 4.8rem);
-      line-height: 1.05;
-      font-weight: 700;
-      color: #5b446f;
+      margin:0;
+      font-family:"Cormorant Garamond", serif;
+      font-size:clamp(2.5rem, 7vw, 4.9rem);
+      line-height:1.04;
+      font-weight:700;
+      color:#5c496f;
+      position:relative;
+      z-index:1;
     }
 
     .amp{
-      color: var(--gold);
-      padding: 0 0.15em;
+      color:var(--gold);
+      padding:0 0.12em;
     }
 
-    .subtitle{
-      margin: 16px auto 0;
-      max-width: 760px;
-      font-size: 1.05rem;
-      color: var(--muted);
+    .date{
+      margin:14px 0 0;
+      font-size:1.03rem;
+      color:#7a668f;
+      font-weight:500;
+      position:relative;
+      z-index:1;
     }
 
     .hero-divider{
-      width: 120px;
-      height: 2px;
-      margin: 22px auto 18px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      border-radius: 999px;
+      width:132px;
+      height:2px;
+      margin:20px auto 18px;
+      background:linear-gradient(90deg, transparent, var(--lilac), var(--gold), transparent);
+      border-radius:999px;
+      position:relative;
+      z-index:1;
     }
 
-    .hero-note{
-      margin: 0;
-      color: var(--muted2);
-      font-size: 0.95rem;
+    .subtitle{
+      max-width:760px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:1.04rem;
+      position:relative;
+      z-index:1;
     }
 
     .grid{
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
+      position:relative;
+      z-index:1;
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
     }
 
     @media (min-width: 860px){
-      .grid{
-        grid-template-columns: 1fr 1fr;
-      }
-      .span-2{
-        grid-column: 1 / -1;
-      }
+      .grid{ grid-template-columns:1fr 1fr; }
+      .span-2{ grid-column:1 / -1; }
     }
 
     .card{
-      position: relative;
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: 24px;
-      padding: 22px 20px 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      position:relative;
+      background:var(--card);
+      border:1px solid var(--stroke);
+      border-radius:24px;
+      padding:22px 20px 18px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
     }
 
     .card::before{
       content:"";
       position:absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(202,168,233,0.35), rgba(255,255,255,0.4), rgba(217,184,108,0.18));
+      inset:0;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(217,193,242,0.4), rgba(255,255,255,0.45), rgba(216,181,111,0.16));
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      pointer-events: none;
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      pointer-events:none;
     }
 
     .section-title{
-      margin: 0 0 4px 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      color: #5f4975;
+      margin:0 0 4px;
+      font-family:"Cormorant Garamond", serif;
+      font-size:2rem;
+      color:#5f4a75;
     }
 
     .section-note{
-      margin: 0 0 16px 0;
-      color: var(--muted2);
-      font-size: 0.95rem;
+      margin:0 0 16px;
+      font-size:0.95rem;
+      color:var(--muted2);
     }
 
     .drink{
-      padding: 14px 0;
-      border-bottom: 1px dashed rgba(168, 137, 196, 0.22);
+      padding:14px 0;
+      border-bottom:1px dashed rgba(178,150,210,0.24);
     }
 
     .drink:last-child{
-      border-bottom: none;
-      padding-bottom: 4px;
-    }
-
-    .drink-name{
-      margin: 0 0 7px 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.45rem;
-      color: #59436d;
-      font-weight: 700;
+      border-bottom:none;
+      padding-bottom:2px;
     }
 
     .tag{
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(202, 168, 233, 0.16);
-      border: 1px solid rgba(202, 168, 233, 0.22);
-      color: #7c6296;
-      font-size: 0.84rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      display:inline-block;
+      margin-bottom:10px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(217,193,242,0.18);
+      border:1px solid rgba(217,193,242,0.28);
+      color:#7d6597;
+      font-size:0.83rem;
+      font-weight:600;
+    }
+
+    .drink-name{
+      margin:0 0 8px;
+      font-family:"Cormorant Garamond", serif;
+      font-size:1.52rem;
+      font-weight:700;
+      color:#5a456f;
     }
 
     ul{
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
     }
 
-    li{ margin: 4px 0; }
+    li{ margin:4px 0; }
 
     .note{
-      margin: 8px 0 0;
-      font-size: 0.95rem;
-      color: var(--muted2);
+      margin:8px 0 0;
+      color:var(--muted2);
+      font-size:0.95rem;
     }
 
-    .signature{
-      margin-top: 26px;
-      text-align: center;
-      color: var(--muted2);
-      font-size: 0.95rem;
+    .footer-card{
+      position:relative;
+      z-index:1;
+      margin-top:22px;
+      text-align:center;
+      padding:24px 20px;
+      border:1px solid var(--stroke);
+      border-radius:24px;
+      background:rgba(255,255,255,0.70);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
     }
 
-    .signature strong{
-      color: #6d557f;
-      font-weight: 600;
+    .footer-title{
+      margin:0 0 6px;
+      font-family:"Cormorant Garamond", serif;
+      font-size:2rem;
+      color:#5f4a75;
     }
 
-    footer{
-      margin-top: 26px;
-      text-align: center;
-      color: var(--muted2);
-      font-size: 0.86rem;
+    .footer-text{
+      margin:0;
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .location{
+      margin-top:10px;
+      color:#7a668f;
+      font-weight:600;
+    }
+
+    .closing{
+      margin-top:20px;
+      text-align:center;
+      color:var(--muted2);
+      font-size:0.92rem;
+      position:relative;
+      z-index:1;
+    }
+
+    @media (max-width: 640px){
+      .corner{
+        width:140px;
+        height:140px;
+        opacity:0.72;
+      }
+
+      header.hero{
+        padding:44px 18px 30px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="floral-blur" aria-hidden="true"></div>
+
+  <!-- Floral corners -->
+  <div class="corner corner-tl" aria-hidden="true">
+    <svg viewBox="0 0 220 220" fill="none">
+      <path d="M18 90 C45 50, 90 25, 140 18" stroke="#d7beeef" stroke-width="3"/>
+      <path d="M20 140 C50 100, 92 72, 144 58" stroke="#eadcf7" stroke-width="3"/>
+      <circle cx="55" cy="56" r="18" fill="#f6e9f7"/>
+      <circle cx="86" cy="36" r="13" fill="#e7d5f6"/>
+      <circle cx="108" cy="68" r="14" fill="#f4e6f7"/>
+      <circle cx="54" cy="105" r="11" fill="#e3cef4"/>
+      <ellipse cx="132" cy="28" rx="12" ry="7" fill="#d8b56f" opacity="0.75"/>
+      <ellipse cx="70" cy="78" rx="11" ry="6" fill="#d8b56f" opacity="0.65"/>
+      <path d="M40 120 C55 105, 74 95, 95 88" stroke="#af95ce" stroke-width="2.5"/>
+      <path d="M76 92 C82 103, 82 114, 76 126" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M95 88 C103 100, 104 111, 99 124" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M120 58 C128 68, 132 80, 130 93" stroke="#b89bd7" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="corner corner-tr" aria-hidden="true">
+    <svg viewBox="0 0 220 220" fill="none">
+      <path d="M18 90 C45 50, 90 25, 140 18" stroke="#d7beeef" stroke-width="3"/>
+      <path d="M20 140 C50 100, 92 72, 144 58" stroke="#eadcf7" stroke-width="3"/>
+      <circle cx="55" cy="56" r="18" fill="#f6e9f7"/>
+      <circle cx="86" cy="36" r="13" fill="#e7d5f6"/>
+      <circle cx="108" cy="68" r="14" fill="#f4e6f7"/>
+      <circle cx="54" cy="105" r="11" fill="#e3cef4"/>
+      <ellipse cx="132" cy="28" rx="12" ry="7" fill="#d8b56f" opacity="0.75"/>
+      <ellipse cx="70" cy="78" rx="11" ry="6" fill="#d8b56f" opacity="0.65"/>
+      <path d="M40 120 C55 105, 74 95, 95 88" stroke="#af95ce" stroke-width="2.5"/>
+      <path d="M76 92 C82 103, 82 114, 76 126" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M95 88 C103 100, 104 111, 99 124" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M120 58 C128 68, 132 80, 130 93" stroke="#b89bd7" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="corner corner-bl" aria-hidden="true">
+    <svg viewBox="0 0 220 220" fill="none">
+      <path d="M18 90 C45 50, 90 25, 140 18" stroke="#d7beeef" stroke-width="3"/>
+      <path d="M20 140 C50 100, 92 72, 144 58" stroke="#eadcf7" stroke-width="3"/>
+      <circle cx="55" cy="56" r="18" fill="#f6e9f7"/>
+      <circle cx="86" cy="36" r="13" fill="#e7d5f6"/>
+      <circle cx="108" cy="68" r="14" fill="#f4e6f7"/>
+      <circle cx="54" cy="105" r="11" fill="#e3cef4"/>
+      <ellipse cx="132" cy="28" rx="12" ry="7" fill="#d8b56f" opacity="0.75"/>
+      <ellipse cx="70" cy="78" rx="11" ry="6" fill="#d8b56f" opacity="0.65"/>
+      <path d="M40 120 C55 105, 74 95, 95 88" stroke="#af95ce" stroke-width="2.5"/>
+      <path d="M76 92 C82 103, 82 114, 76 126" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M95 88 C103 100, 104 111, 99 124" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M120 58 C128 68, 132 80, 130 93" stroke="#b89bd7" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="corner corner-br" aria-hidden="true">
+    <svg viewBox="0 0 220 220" fill="none">
+      <path d="M18 90 C45 50, 90 25, 140 18" stroke="#d7beeef" stroke-width="3"/>
+      <path d="M20 140 C50 100, 92 72, 144 58" stroke="#eadcf7" stroke-width="3"/>
+      <circle cx="55" cy="56" r="18" fill="#f6e9f7"/>
+      <circle cx="86" cy="36" r="13" fill="#e7d5f6"/>
+      <circle cx="108" cy="68" r="14" fill="#f4e6f7"/>
+      <circle cx="54" cy="105" r="11" fill="#e3cef4"/>
+      <ellipse cx="132" cy="28" rx="12" ry="7" fill="#d8b56f" opacity="0.75"/>
+      <ellipse cx="70" cy="78" rx="11" ry="6" fill="#d8b56f" opacity="0.65"/>
+      <path d="M40 120 C55 105, 74 95, 95 88" stroke="#af95ce" stroke-width="2.5"/>
+      <path d="M76 92 C82 103, 82 114, 76 126" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M95 88 C103 100, 104 111, 99 124" stroke="#b89bd7" stroke-width="2"/>
+      <path d="M120 58 C128 68, 132 80, 130 93" stroke="#b89bd7" stroke-width="2"/>
+    </svg>
+  </div>
 
   <div class="wrap">
     <header class="hero">
-      <p class="eyebrow">Wedding Reception Menu</p>
+      <p class="eyebrow">Reception Cocktail Menu</p>
+      <div class="monogram"><span>C&amp;S</span></div>
       <h1 class="title">Camila Tan <span class="amp">&amp;</span> Samuel Vilchez</h1>
+      <p class="date">Saturday, October 18, 2026</p>
       <div class="hero-divider"></div>
       <p class="subtitle">
-        A small curated cocktail menu for a joyful evening of celebration, love, and great company.
+        A small curated menu for a beautiful evening of love, celebration, and great company.
       </p>
-      <p class="hero-note">All measurements are listed for one drink.</p>
     </header>
 
     <main class="grid">
       <section class="card">
-        <h2 class="section-title">For the Toast</h2>
-        <p class="section-note">Simple, elegant, celebratory</p>
+        <h2 class="section-title">To Begin</h2>
+        <p class="section-note">Elegant, celebratory, and simple</p>
 
         <div class="drink">
           <div class="tag">Sparkling</div>
-          <h3 class="drink-name">Toast</h3>
+          <h3 class="drink-name">First Toast</h3>
           <ul>
             <li>4 oz Champagne or sparkling wine</li>
             <li>Serve chilled in a flute or coupe</li>
           </ul>
-          <p class="note">A classic first pour to celebrate the couple.</p>
+          <p class="note">A classic celebratory pour to begin the evening.</p>
         </div>
       </section>
 
       <section class="card">
-        <h2 class="section-title">Bright & Refreshing</h2>
-        <p class="section-note">Crisp citrus with a lively finish</p>
+        <h2 class="section-title">Something Bright</h2>
+        <p class="section-note">Fresh citrus with bold personality</p>
 
         <div class="drink">
           <div class="tag">Highball</div>
-          <h3 class="drink-name">Paloma</h3>
+          <h3 class="drink-name">El diaaaablo</h3>
           <ul>
             <li>2 oz Tequila blanco or mezcal</li>
             <li>1/2 oz Lime juice</li>
             <li>4 oz Grapefruit soda</li>
             <li>Add directly in glass over ice and stir gently for 5–10 seconds</li>
           </ul>
-          <p class="note">Fresh, bright, and easy to enjoy throughout the reception.</p>
+          <p class="note">Refreshing, lively, and made for the dance floor.</p>
         </div>
       </section>
 
       <section class="card span-2">
-        <h2 class="section-title">Signature Cocktail</h2>
-        <p class="section-note">Soft texture, smoky depth, wedding-ready presentation</p>
+        <h2 class="section-title">Signature Pour</h2>
+        <p class="section-note">Soft texture, smoky depth, and a little romance</p>
 
         <div class="drink">
           <div class="tag">Clarified</div>
-          <h3 class="drink-name">Clarified Milk Cocktail — Mezcal</h3>
+          <h3 class="drink-name">Cami’s One and Only</h3>
           <ul>
             <li>1.5 oz Mezcal</li>
             <li>3/4 oz Lemon juice</li>
@@ -318,37 +452,35 @@
             <li>1 oz milk for clarification process</li>
             <li>Serve cold over a large cube or neat after clarification</li>
           </ul>
-          <p class="note">
-            Smooth, refined, and elegant with a subtle smoky finish. Replace these proportions with your original clarified mezcal recipe if you had a specific version before.
-          </p>
+          <p class="note">Smooth, elegant, and memorable with a subtle smoky finish.</p>
         </div>
       </section>
 
       <section class="card span-2">
-        <h2 class="section-title">Easy Favorite</h2>
-        <p class="section-note">Relaxed, familiar, and approachable</p>
+        <h2 class="section-title">A Crowd Favorite</h2>
+        <p class="section-note">Comforting, classic, and easy to love</p>
 
         <div class="drink">
           <div class="tag">Classic Mixed Drink</div>
-          <h3 class="drink-name">Rum &amp; Coke</h3>
+          <h3 class="drink-name">El Clasico</h3>
           <ul>
             <li>2 oz Rum</li>
             <li>4 oz Coke</li>
             <li>Lime wedge optional</li>
             <li>Add directly in glass over ice and stir gently for 5–10 seconds</li>
           </ul>
-          <p class="note">A comfortable crowd-pleaser for guests who want something simple and familiar.</p>
+          <p class="note">Familiar, effortless, and always the right choice for someone wanting a classic.</p>
         </div>
       </section>
     </main>
 
-    <p class="signature">
-      With love, <strong>Camila &amp; Samuel</strong>
-    </p>
+    <section class="footer-card">
+      <h2 class="footer-title">Join Us in Celebration</h2>
+      <p class="footer-text">We’re so happy to share this evening with you.</p>
+      <p class="location">Reception Location: Add your venue name here • Add city, state here</p>
+    </section>
 
-    <footer>
-      Reception menu • Crafted for a beautiful celebration
-    </footer>
+    <p class="closing">With love, Camila &amp; Samuel</p>
   </div>
 </body>
 </html>
